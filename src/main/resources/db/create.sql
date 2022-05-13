@@ -3,14 +3,14 @@ SET MODE PostgreSQL;
 
 CREATE IF NOT EXISTS staff(
   department_id int,
-  id serial PRIMARY KEY,
+  id int  PRIMARY KEY auto_increment,
   name varchar,
-  office_position varchar,
+  staff_position varchar,
   role varchar
 );
 
 CREATE TABLE IF NOT EXISTS departments(
- id serial PRIMARY KEY,
+ id int  PRIMARY KEY auto_increment,
  name varchar,
  description varchar,
  dpt_size int
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS departments(
 );
 
 CREATE TABLE IF NOT EXISTS news(
- id serial PRIMARY KEY,
+ id int  PRIMARY KEY auto_increment,
  content varchar,
  department_id varchar,
  user_id varchar,
