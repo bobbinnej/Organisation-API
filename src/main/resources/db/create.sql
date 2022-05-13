@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS news(
  content varchar,
  department_id varchar,
  user_id varchar,
- title varchar,
- postdate timestamp
+ type varchar,
+ postdate Timestamp
 
 );
