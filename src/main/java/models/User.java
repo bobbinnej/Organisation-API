@@ -2,7 +2,7 @@ package models;
 
 import java.util.Objects;
 
-public class Staff {
+public class User {
 
     private int id;
     private String name;
@@ -11,14 +11,14 @@ public class Staff {
     private String department_id;
 
     // constructor
-    public Staff(String name, String staff_position, String role, String department_id) {
+    public User(String name, String staff_position, String role, String department_id) {
         this.name = name;
         this.staff_position = staff_position;
         this.role = role;
         this.department_id = department_id;
     }
 
-    public Staff(int id, String name, String staff_position, String role, String department_id) {
+    public User(int id, String name, String staff_position, String role, String department_id) {
         this.id = id;
         this.name = name;
         this.staff_position = staff_position;
@@ -32,8 +32,8 @@ public class Staff {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Staff staff = (Staff) o;
-        return id == staff.id && name.equals(staff.name) && staff_position.equals(staff.staff_position) && role.equals(staff.role) && department_id.equals(staff.department_id);
+        User users = (User) o;
+        return id == users.id && name.equals(users.name) && staff_position.equals(users.staff_position) && role.equals(users.role) && department_id.equals(users.department_id);
     }
 
     @Override

@@ -1,7 +1,7 @@
 --This line tells h2 database that the mode i am using is for postgresql--
 SET MODE PostgreSQL;
 
-CREATE IF NOT EXISTS staff(
+CREATE IF NOT EXISTS users(
   department_id int,
   id int  PRIMARY KEY auto_increment,
   name varchar,
