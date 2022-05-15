@@ -6,6 +6,9 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sql20UserDao implements UserDao {
 
     //sql2o connection object
@@ -37,4 +40,66 @@ public class Sql20UserDao implements UserDao {
 
 
     }
+    //method to get all users
+    @Override
+    public List<User> getAll() {
+        //define our connection for adding
+        String sql="SELECT *FROM users";
+        //create connection
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql, true)
+                     .executeAndFetch(User.class);
+
+        }
+
+    }
+  //method to find users by id
+    @Override
+    public User findById(int id) {
+        //define our connection for adding
+        String sql="SELECT *FROM users WHERE id=:id";
+        //create connection
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql, true)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(User.class);
+        }
+    }
+
+//Method to update user
+    @Override
+    public void updateUser(User user, String name, String staff_position, String role, String department_id) {
+        String sql="UPDATE users set(name,staff_position,role,department_id)=(:name, :staff_position, :role,:department_id) WHERE id=:id";
+        try(Connection con=sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("name", name)
+                    .addParameter("staff_position",staff_position)
+                    .addParameter("role",role)
+                    .addParameter("department_id",department_id)
+                    .addParameter("id",user.getId())
+                    .executeUpdate();
+
+            user.setName(name);
+            user.setStaff_position(staff_position);
+            user.setRole(role);
+            user.setDepartment_id(department_id);
+
+
+        }
+
+    }
+
+    //method to clear all users
+    @Override
+    public void clearAll() {
+        String sql="SELECT FROM users";
+        //create connection
+        try (Connection con = sql2o.open()) {
+           con.createQuery(sql).executeUpdate();
+
+        }
+
+
+    }
+
 }

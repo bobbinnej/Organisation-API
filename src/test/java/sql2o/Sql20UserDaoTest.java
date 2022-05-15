@@ -1,5 +1,6 @@
 package sql2o;
 
+import Interfaces.UserDao;
 import models.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +38,29 @@ class Sql20UserDaoTest {
         assertNotEquals(id,user.getId());
     }
 
-     @AfterEach  //this will run after every test
+    //Test to see if we get all users
+    @Test
+    public void getAll_returnsAllUser_true(){
+        User user=new User("jackie", "HR","Pay staff","BOO4");
+        User user1=new User("offset", "Secretary","Keep office records","BO10");
+        sql20UserDao.addUser(user);
+        sql20UserDao.addUser(user1);
+        assertEquals(2, sql20UserDao.getAll().size());
+    }
+
+    //Test to update user information
+    @Test
+    public void update_returnsUpdatedUser(){
+        User user = setUpUser();
+        sql20UserDao.addUser(user);
+
+    }
+
+    public User setUpUser() {
+        return new User("Sarah","Head of Communications", "Relay infromation","COO3");
+    }
+
+    @AfterEach  //this will run after every test
        public void closeCon(){     //close database connection
         con.close();
     }
