@@ -1,10 +1,10 @@
 --This line tells h2 database that the mode i am using is for postgresql--
 SET MODE PostgreSQL;
 
-CREATE IF NOT EXISTS users(
-  department_id int,
-  id int  PRIMARY KEY auto_increment,
+CREATE TABLE IF NOT EXISTS users(
+ id int  PRIMARY KEY auto_increment,
   name varchar,
+  department_id varchar,
   staff_position varchar,
   role varchar
 );
