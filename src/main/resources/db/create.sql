@@ -23,6 +23,6 @@ CREATE TABLE IF NOT EXISTS news(
  department_id varchar,
  user_id varchar,
  type varchar,
- postdate Timestamp
+ title varchar
 
 );

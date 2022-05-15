@@ -10,25 +10,25 @@ public class News {
     private int department_id;
     private  int user_id;
     private String type;
-    private Timestamp postdate;
+    private String title;
 
 
     // constructor
-    public News(String content, int department_id, int user_id, String type, Timestamp postdate) {
+    public News(String content, int department_id, int user_id, String type, String title) {
         this.content = content;
         this.department_id = department_id;
         this.user_id = user_id;
         this.type = type;
-        this.postdate = postdate;
+        this.title = title;
     }
 
-    public News(int id, String content, int department_id, int user_id, String type, Timestamp postdate) {
+    public News(int id, String content, int department_id, int user_id, String type, String title) {
         this.id = id;
         this.content = content;
         this.department_id = department_id;
         this.user_id = user_id;
         this.type = type;
-        this.postdate = postdate;
+        this.title = title;
     }
 
     // overriders
@@ -38,12 +38,12 @@ public class News {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         News news = (News) o;
-        return id == news.id && department_id == news.department_id && user_id == news.user_id && content.equals(news.content) && type.equals(news.type) && postdate.equals(news.postdate);
+        return id == news.id && department_id == news.department_id && user_id == news.user_id && content.equals(news.content) && type.equals(news.type) && title.equals(news.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content, department_id, user_id, type, postdate);
+        return Objects.hash(id, content, department_id, user_id, type, title);
     }
 
     //getters and setters
@@ -88,12 +88,12 @@ public class News {
         this.type = type;
     }
 
-    public Timestamp getPostdate() {
-        return postdate;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPostdate(Timestamp postdate) {
-        this.postdate = postdate;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
 

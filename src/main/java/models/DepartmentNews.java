@@ -11,9 +11,9 @@ public class DepartmentNews extends News{
     //constructor
 
 
-    public DepartmentNews(String content, int department_id, int user_id, String type, Timestamp postdate, int department_id1) {
-        super(content, department_id, user_id, type, postdate);
-        this.department_id = department_id1;
+    public DepartmentNews(String content, int department_id, int user_id, String type, String title) {
+        super(content, department_id, user_id, type,title);
+        this.department_id = department_id;
     }
 
     //overriders
