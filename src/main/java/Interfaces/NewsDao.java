@@ -9,12 +9,15 @@ public interface NewsDao {
     //CRUD
     //create
 
-    void addGeneralNews();
-    void addDepartmentNews();
+    void addGeneralNews(News news);
+
+    void addDepartmentNews(DepartmentNews depNews);
 
     //Read
 
     List<News> getAllNews();
     List<News>getGeneralNews();
     List<DepartmentNews>getDepartmentNews();
+
+
 }
