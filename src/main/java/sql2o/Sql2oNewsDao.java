@@ -163,6 +163,30 @@ public class Sql2oNewsDao implements NewsDao {
 
     }
 
+    //method to find general news by id
+    @Override
+    public News findGeneralNewsById(int id) {
+        String sql="SELECT *FROM  news WHERE type=:type and id=:id";
+        try(Connection con= sql2o.open()){
+            return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
+                    .addParameter("type", GEN_NEWS)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(News.class);
+        }
+    }
+
+    //find department news by id
+    @Override
+    public DepartmentNews findDepartmentNewsById(int id) {
+        String sql = "SELECT *FROM  news WHERE type=:type and id=:id";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("type", DEP_NEWS)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(DepartmentNews.class);
+        }
+    }
 
 
 
