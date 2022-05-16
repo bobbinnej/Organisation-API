@@ -89,6 +89,82 @@ public class Sql2oNewsDao implements NewsDao {
                   .executeAndFetch(DepartmentNews.class);
       }
 
+    }
+
+    //method to update general news
+    @Override
+    public void updateGeneralNews(News news, String user_id, String content, String department_id, String type, String title) {
+        String sql="UPDATE news set( user_id, content, department_id, type, title)=( :user_id, :content, :department_id, :type, :title) WHERE id=:id";
+        try(Connection con= sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("user_id",user_id)
+                    .addParameter("content",content)
+                    .addParameter("department_id",department_id)
+                    .addParameter("type",type)
+                    .addParameter("title",title)
+                    .addParameter("id",news.getId())
+                            .executeUpdate();
+
+                    news.setUser_id(user_id);
+                    news.setContent(content);
+                    news.setDepartment_id(department_id);
+                    news.setType(type);
+                    news.setTitle(title);
+
+        }
 
     }
+//Method to update department news
+    @Override
+    public void updateDepartmentNews(DepartmentNews depNews, String user_id, String content, String department_id) {
+        String sql="UPDATE news set(user_id, content, department_id)=(:user_id, :content, :department_id) WHERE id=:id";
+        try(Connection con= sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("user_id", user_id)
+                    .addParameter("content", content)
+                    .addParameter("department_id",department_id)
+                    .addParameter("id", depNews.getId())
+                    .executeUpdate();
+            depNews.setUser_id(user_id);
+            depNews.setContent(content);
+            depNews.setDepartment_id(department_id);
+
+        }
+
+    }
+    //Method to clear all news
+    @Override
+    public void clearAllNews() {
+       String sql="DELETE FROM news";
+       try(Connection con= sql2o.open()){
+           con.createQuery(sql).executeUpdate();
+       }
+    }
+//method to delete general news
+    @Override
+    public void clearGeneralNews() {
+        String sql="DELETE FROM news WHERE type=:type";
+        try(Connection con= sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("type", GEN_NEWS)
+                    .executeUpdate();
+        }
+
+    }
+//method to clear all department news
+    @Override
+    public void clearDepartmentNews() {
+        String sql="DELETE FROM news WHERE type=:type";
+        try(Connection con= sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("type", DEP_NEWS)
+                    .executeUpdate();
+        }
+
+    }
+
+
+
+
+
 }

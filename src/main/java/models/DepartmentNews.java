@@ -6,12 +6,12 @@ import java.util.Objects;
 //Aspect of inheritance
 public class DepartmentNews extends News{
 
-    private int department_id;
+    private String department_id;
 
     //constructor
 
 
-    public DepartmentNews(String content, int department_id, int user_id, String type, String title) {
+    public DepartmentNews(String content, String department_id, String user_id, String type, String title) {
         super(content, department_id, user_id, type,title);
         this.department_id = department_id;
     }
@@ -35,12 +35,12 @@ public class DepartmentNews extends News{
     //getters and setters
 
     @Override
-    public int getDepartment_id() {
+    public String getDepartment_id() {
         return department_id;
     }
 
     @Override
-    public void setDepartment_id(int department_id) {
+    public void setDepartment_id(String department_id) {
         this.department_id = department_id;
     }
 }
