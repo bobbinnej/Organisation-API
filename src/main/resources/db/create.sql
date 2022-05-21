@@ -1,6 +1,9 @@
 --This line tells h2 database that the mode i am using is for postgresql--
 SET MODE PostgreSQL;
 
+CREATE DATABASE news;
+\c news
+
 CREATE TABLE IF NOT EXISTS users(
  id int  PRIMARY KEY auto_increment,
   name varchar,
