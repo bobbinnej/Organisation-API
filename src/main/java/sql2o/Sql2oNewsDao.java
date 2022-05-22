@@ -62,10 +62,12 @@ public class Sql2oNewsDao implements NewsDao {
     @Override
     public List<News> getAllNews() {
 
-        List<News>news=new ArrayList<>();
-        news.addAll(getGeneralNews());
-        news.addAll(getDepartmentNews());
-        return news;
+        try(Connection con= sql2o.open()){
+            String sql="SELECT *FROM news";
+            return con.createQuery(sql,true)
+                    .executeAndFetch(News.class);
+        }
+
     }
 //Method to get general news
     @Override

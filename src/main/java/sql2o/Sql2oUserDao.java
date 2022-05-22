@@ -91,10 +91,11 @@ public class Sql2oUserDao implements UserDao {
     //method to clear all users
     @Override
     public void clearAll() {
-        String sql="SELECT FROM users";
+        String sql="DELETE FROM users";
         //create connection
         try (Connection con = sql2o.open()) {
-           con.createQuery(sql).executeUpdate();
+           con.createQuery(sql)
+                   .executeUpdate();
 
         }
 

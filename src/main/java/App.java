@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import sql2o.Sql2oDepartmentDao;
@@ -19,10 +20,17 @@ public class App {
 
         userDao=new Sql2oUserDao(sql2o);
         newsDao=new Sql2oNewsDao(sql2o);
-        departmentDao=new Sql2oDepartmentDao(sql2o);
+//        departmentDao=new Sql2oDepartmentDao(sql2o);
         con= sql2o.open();
 
-        static
+        staticFileLocation("/public");
+
+        //get all users
+        get("/users", (request,respond)->{
+            return gson.toJson(userDao.getAll());
+        });
+
+
 
     }
 }

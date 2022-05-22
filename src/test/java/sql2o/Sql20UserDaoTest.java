@@ -13,7 +13,7 @@ class Sql20UserDaoTest {
 
 
     //define objects i am testing and connection
-    private Sql2oUserDao sql20UserDao;
+    private Sql2oUserDao sql2oUserDao;
     private Connection con;
 
     //Method that runs before every test
@@ -24,7 +24,7 @@ class Sql20UserDaoTest {
                                                                                              // INIT=RUNSCRIPT is the script that will be used to generate the database in memory
         //create connection which is creating an sql2o object
         Sql2o sql2o=new Sql2o(connect,"","");
-        sql20UserDao=new Sql2oUserDao(sql2o); //initialize sql2o user dao
+        sql2oUserDao=new Sql2oUserDao(sql2o); //initialize sql2o user dao
         con= sql2o.open(); //open the connection
     }
 
@@ -33,7 +33,7 @@ class Sql20UserDaoTest {
     public void add_addNewUser_true(){
         User user=new User("jackie", "HR","Pay staff",2);
         int id =user.getId();
-        sql20UserDao.addUser(user);
+        sql2oUserDao.addUser(user);
         assertNotEquals(id,user.getId());
     }
 
@@ -42,17 +42,36 @@ class Sql20UserDaoTest {
     public void getAll_returnsAllUser_true(){
         User user=new User("jackie", "HR","Pay staff",2);
         User user1=new User("offset", "Secretary","Keep office records",3);
-        sql20UserDao.addUser(user);
-        sql20UserDao.addUser(user1);
-        assertEquals(2, sql20UserDao.getAll().size());
+        sql2oUserDao.addUser(user);
+        sql2oUserDao.addUser(user1);
+        assertEquals(2, sql2oUserDao.getAll().size());
     }
 
     //Test to update user information
     @Test
     public void update_returnsUpdatedUser(){
         User user = setUpUser();
-        sql20UserDao.addUser(user);
+        sql2oUserDao.addUser(user);
 
+    }
+
+    //Test to find user by id
+     @Test
+    public void findUserByID(){
+
+        User user=setUpUser();
+        User user1=setUpUser();
+        User findUser=sql2oUserDao.findById(user1.getId());
+        assertEquals(false,user.equals(findUser));
+    }
+
+    //Test to clear all users
+    @Test
+    public void deleteAllUsers(){
+        User user=setUpUser();
+        User user1=setUpUser();
+        sql2oUserDao.clearAll();
+        assertEquals(0,sql2oUserDao.getAll().size());
     }
 
     public User setUpUser() {

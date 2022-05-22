@@ -16,9 +16,9 @@ public class Sql2oDepartmentDao implements DepartmentDao {
     //sql2o connection object
     private final Sql2o sql2o;
 
-    public Sql2oDepartmentDao(Sql2oNewsDao newsDao, Sql2oUserDao userDao, Sql2o sql2o) {
-        this.newsDao = newsDao;
-        this.userDao = userDao;
+    public Sql2oDepartmentDao( Sql2o sql2o) {
+        this.newsDao = new Sql2oNewsDao(sql2o);
+        this.userDao = new Sql2oUserDao(sql2o);
         this.sql2o = sql2o;
     }
 
@@ -26,7 +26,7 @@ public class Sql2oDepartmentDao implements DepartmentDao {
 // add a department
     @Override
     public void addDepartment(Department department) {
-        String sql="INSERT INTO departments (name, description, dpt_size) VALUES(:name, :decription, :dpt_size)";
+        String sql="INSERT INTO departments (name, description, dpt_size) VALUES(:name, :description, :dpt_size)";
         try(Connection con= sql2o.open()){
             int id=(int) con.createQuery(sql,true)
                     .bind(department)
