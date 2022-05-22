@@ -6,16 +6,15 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Sql20UserDao implements UserDao {
+public class Sql2oUserDao implements UserDao {
 
     //sql2o connection object
     private final Sql2o sql2o;
 
     //constructor to implement sql2o object
-    public Sql20UserDao(Sql2o sql2o) {
+    public Sql2oUserDao(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 

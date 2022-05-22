@@ -1,6 +1,5 @@
 package sql2o;
 
-import Interfaces.UserDao;
 import models.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,7 @@ class Sql20UserDaoTest {
 
 
     //define objects i am testing and connection
-    private Sql20UserDao sql20UserDao;
+    private Sql2oUserDao sql20UserDao;
     private Connection con;
 
     //Method that runs before every test
@@ -25,7 +24,7 @@ class Sql20UserDaoTest {
                                                                                              // INIT=RUNSCRIPT is the script that will be used to generate the database in memory
         //create connection which is creating an sql2o object
         Sql2o sql2o=new Sql2o(connect,"","");
-        sql20UserDao=new Sql20UserDao(sql2o); //initialize sql2o user dao
+        sql20UserDao=new Sql2oUserDao(sql2o); //initialize sql2o user dao
         con= sql2o.open(); //open the connection
     }
 

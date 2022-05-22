@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 public class Sql2oDepartmentDao implements DepartmentDao {
 
     private final Sql2oNewsDao newsDao;
-    private final Sql20UserDao userDao;
+    private final Sql2oUserDao userDao;
     //sql2o connection object
     private final Sql2o sql2o;
 
-    public Sql2oDepartmentDao(Sql2oNewsDao newsDao, Sql20UserDao userDao, Sql2o sql2o) {
+    public Sql2oDepartmentDao(Sql2oNewsDao newsDao, Sql2oUserDao userDao, Sql2o sql2o) {
         this.newsDao = newsDao;
         this.userDao = userDao;
         this.sql2o = sql2o;

@@ -24,6 +24,7 @@ public interface DepartmentDao {
     //clear
     void clearAllDepartments();
 
+
     //find by id
     Department findById(int id);
 
