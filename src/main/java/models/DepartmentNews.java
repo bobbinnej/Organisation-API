@@ -1,20 +1,19 @@
 package models;
 
-import java.sql.Timestamp;
 import java.util.Objects;
 
 //Aspect of inheritance
 public class DepartmentNews extends News{
 
-    private String department_id;
+    private int department_id;
 
     //constructor
 
-
-    public DepartmentNews(String content, String department_id, String user_id, String type, String title) {
-        super(content, department_id, user_id, type,title);
+    public DepartmentNews(int id, String content, int department_id, String user_id, String type, String title) {
+        super(id, content, department_id, user_id, type, title);
         this.department_id = department_id;
     }
+
 
     //overriders
 
@@ -34,13 +33,14 @@ public class DepartmentNews extends News{
 
     //getters and setters
 
+
     @Override
-    public String getDepartment_id() {
+    public int getDepartment_id() {
         return department_id;
     }
 
     @Override
-    public void setDepartment_id(String department_id) {
+    public void setDepartment_id(int department_id) {
         this.department_id = department_id;
     }
 }

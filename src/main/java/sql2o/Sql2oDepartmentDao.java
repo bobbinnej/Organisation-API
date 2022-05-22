@@ -22,8 +22,20 @@ public class Sql2oDepartmentDao implements DepartmentDao {
         this.sql2o = sql2o;
     }
 
+
+// add a department
     @Override
     public void addDepartment(Department department) {
+        String sql="INSERT INTO departments (name, description, dpt_size) VALUES(:name, :decription, :dpt_size)";
+        try(Connection con= sql2o.open()){
+            int id=(int) con.createQuery(sql,true)
+                    .bind(department)
+                    .executeUpdate()
+                    .getKey();
+            department.setId(id);
+
+
+        }
 
     }
 
@@ -38,32 +50,39 @@ public class Sql2oDepartmentDao implements DepartmentDao {
         }
 
     }
-
+//get Department users by id
     @Override
     public List<User> getDepartmentUsersById(int id) {
        return userDao.getAll().stream()
-               .filter(user -> user.getDepartment_id()==id)
+               .filter(user->user.getDepartment_id()==id)
                .collect(Collectors.toList());
 
     }
-
+//get department news by id
     @Override
     public List<DepartmentNews> getDepartmentNewsById(int id) {
-        return null;
-    }
+         return newsDao.getDepartmentNews().stream()
+                 .filter(dept->dept.getDepartment_id()==id)
+                 .collect(Collectors.toList());
 
+    }
+// update department
     @Override
-    public void updateDepartment(Department department, String name, String description) {
+    public void updateDepartment(Department department, String name, String description, int dpt_size) {
         String sql="UPDATE departments set(name, description, dpt_size)=(:name, :description, :dpt_size)";
         try(Connection con= sql2o.open()){
             con.createQuery(sql)
                     .addParameter("name", name)
                     .addParameter("description", description)
                     .addParameter("dpt_size", dpt_size)
+                    .executeUpdate();
+            department.setName(name);
+            department.setDescription(description);
+            department.setDpt_size(dpt_size);
 
         }
-
     }
+
 
     //clear all departments
     @Override
@@ -77,6 +96,11 @@ public class Sql2oDepartmentDao implements DepartmentDao {
 
     @Override
     public Department findById(int id) {
-        return null;
+        String sql="SELECT *FROM departments where id=:id";
+        try(Connection con= sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Department.class);
+        }
     }
 }

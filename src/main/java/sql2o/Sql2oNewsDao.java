@@ -93,7 +93,7 @@ public class Sql2oNewsDao implements NewsDao {
 
     //method to update general news
     @Override
-    public void updateGeneralNews(News news, String user_id, String content, String department_id, String type, String title) {
+    public void updateGeneralNews(News news, String user_id, String content, int department_id, String type, String title) {
         String sql="UPDATE news set( user_id, content, department_id, type, title)=( :user_id, :content, :department_id, :type, :title) WHERE id=:id";
         try(Connection con= sql2o.open()){
             con.createQuery(sql)
@@ -116,7 +116,7 @@ public class Sql2oNewsDao implements NewsDao {
     }
 //Method to update department news
     @Override
-    public void updateDepartmentNews(DepartmentNews depNews, String user_id, String content, String department_id) {
+    public void updateDepartmentNews(DepartmentNews depNews, String user_id, String content, int department_id) {
         String sql="UPDATE news set(user_id, content, department_id)=(:user_id, :content, :department_id) WHERE id=:id";
         try(Connection con= sql2o.open()){
             con.createQuery(sql)

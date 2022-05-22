@@ -68,7 +68,7 @@ public class Sql20UserDao implements UserDao {
 
 //Method to update user
     @Override
-    public void updateUser(User user, String name, String staff_position, String role, String department_id) {
+    public void updateUser(User user, String name, String staff_position, String role, int department_id) {
         String sql="UPDATE users set(name,staff_position,role,department_id)=(:name, :staff_position, :role,:department_id) WHERE id=:id";
         try(Connection con=sql2o.open()){
             con.createQuery(sql)

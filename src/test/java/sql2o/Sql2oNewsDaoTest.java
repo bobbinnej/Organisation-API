@@ -46,6 +46,6 @@ class Sql2oNewsDaoTest {
 
 
     private User setUpUser() {
-        return new User("jackie","HR","Guidance","B002");
+        return new User("jackie","HR","Guidance",2);
     }
 }

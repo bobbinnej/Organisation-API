@@ -1,20 +1,19 @@
 package models;
 
-import java.sql.Timestamp;
 import java.util.Objects;
 
 public class News {
 
     private int id;
     private String content;
-    private String department_id;
+    private int department_id;
     private  String user_id;
     private String type;
     private String title;
 
 
     // constructor
-    public News(String content, String department_id, String user_id, String type, String title) {
+    public News(String content, int department_id, String user_id, String type, String title) {
         this.content = content;
         this.department_id = department_id;
         this.user_id = user_id;
@@ -22,7 +21,7 @@ public class News {
         this.title = title;
     }
 
-    public News(int id, String content, String department_id, String user_id, String type, String title) {
+    public News(int id, String content, int department_id, String user_id, String type, String title) {
         this.id = id;
         this.content = content;
         this.department_id = department_id;
@@ -64,11 +63,11 @@ public class News {
         this.content = content;
     }
 
-    public String getDepartment_id() {
+    public int getDepartment_id() {
         return department_id;
     }
 
-    public void setDepartment_id(String department_id) {
+    public void setDepartment_id(int department_id) {
         this.department_id = department_id;
     }
 

@@ -32,7 +32,7 @@ class Sql20UserDaoTest {
     //check whether adduser method is working
     @Test
     public void add_addNewUser_true(){
-        User user=new User("jackie", "HR","Pay staff","BOO4");
+        User user=new User("jackie", "HR","Pay staff",2);
         int id =user.getId();
         sql20UserDao.addUser(user);
         assertNotEquals(id,user.getId());
@@ -41,8 +41,8 @@ class Sql20UserDaoTest {
     //Test to see if we get all users
     @Test
     public void getAll_returnsAllUser_true(){
-        User user=new User("jackie", "HR","Pay staff","BOO4");
-        User user1=new User("offset", "Secretary","Keep office records","BO10");
+        User user=new User("jackie", "HR","Pay staff",2);
+        User user1=new User("offset", "Secretary","Keep office records",3);
         sql20UserDao.addUser(user);
         sql20UserDao.addUser(user1);
         assertEquals(2, sql20UserDao.getAll().size());
@@ -57,7 +57,7 @@ class Sql20UserDaoTest {
     }
 
     public User setUpUser() {
-        return new User("Sarah","Head of Communications", "Relay infromation","COO3");
+        return new User("Sarah","Head of Communications", "Relay infromation",5);
     }
 
     @AfterEach  //this will run after every test

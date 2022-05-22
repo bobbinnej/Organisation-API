@@ -21,8 +21,8 @@ public interface NewsDao {
 
     //update
 
-    void updateGeneralNews(News news, String user_id, String content, String department_id, String type,String title);
-    void updateDepartmentNews(DepartmentNews depNews, String user_id, String content, String department_id);
+    void updateGeneralNews(News news, String user_id, String content, int department_id, String type,String title);
+    void updateDepartmentNews(DepartmentNews depNews, String user_id, String content, int department_id);
 
 
     //clear

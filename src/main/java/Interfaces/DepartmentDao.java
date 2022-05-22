@@ -19,7 +19,7 @@ public interface DepartmentDao {
     List<DepartmentNews>getDepartmentNewsById(int id);
 
     //update
-    void updateDepartment(Department department, String name, String description);
+    void updateDepartment(Department department, String name, String description, int dpt_size);
 
     //clear
     void clearAllDepartments();

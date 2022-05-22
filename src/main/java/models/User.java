@@ -8,17 +8,17 @@ public class User {
     private String name;
     private String staff_position;
     private String role;
-    private String department_id;
+    private int department_id;
 
     // constructor
-    public User(String name, String staff_position, String role, String department_id) {
+    public User(String name, String staff_position, String role, int department_id) {
         this.name = name;
         this.staff_position = staff_position;
         this.role = role;
         this.department_id = department_id;
     }
 
-    public User(int id, String name, String staff_position, String role, String department_id) {
+    public User(int id, String name, String staff_position, String role, int department_id) {
         this.id = id;
         this.name = name;
         this.staff_position = staff_position;
@@ -32,8 +32,8 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User users = (User) o;
-        return id == users.id && name.equals(users.name) && staff_position.equals(users.staff_position) && role.equals(users.role) && department_id.equals(users.department_id);
+        User user = (User) o;
+        return id == user.id && department_id == user.department_id && name.equals(user.name) && staff_position.equals(user.staff_position) && role.equals(user.role);
     }
 
     @Override
@@ -43,6 +43,7 @@ public class User {
 
 
     //getters and setters
+
 
     public int getId() {
         return id;
@@ -76,15 +77,11 @@ public class User {
         this.role = role;
     }
 
-    public String getDepartment_id() {
+    public int getDepartment_id() {
         return department_id;
     }
 
-    public void setDepartment_id(String department_id) {
+    public void setDepartment_id(int department_id) {
         this.department_id = department_id;
     }
-
-
-
-
 }
